@@ -1,0 +1,26 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+@import './styles/theme.css';
+@import './styles/animations.css';
+@import './styles/components.css';
+
+@layer base {
+  body {
+    @apply bg-gradient-to-br from-gray-50 to-gray-100 min-h-screen;
+  }
+}
+
+@layer components {
+  .page-transition {
+    @apply animate-slide-up;
+  }
+  
+  .section-transition {
+    @apply animate-float;
+  }
+  
+  .interactive-element {
+    @apply hover-scale hover-glow;
+  }
+}

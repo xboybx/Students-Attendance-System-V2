@@ -1,0 +1,92 @@
+/* Modern Button Styles */
+.btn-modern {
+  @apply relative overflow-hidden rounded-lg px-6 py-3 font-semibold transition-all duration-300;
+  background: var(--primary-gradient);
+}
+
+.btn-modern::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--secondary-gradient);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.btn-modern:hover::after {
+  opacity: 1;
+}
+
+/* Card Styles */
+.card-modern {
+  @apply rounded-xl p-6 transition-all duration-300;
+  background: white;
+  box-shadow: var(--shadow-card);
+}
+
+.card-modern:hover {
+  box-shadow: var(--shadow-hover);
+  transform: translateY(-2px);
+}
+
+/* Input Fields */
+.input-modern {
+  @apply rounded-lg border-2 px-4 py-2 transition-all duration-300;
+  border-color: transparent;
+  background: var(--bg-light);
+}
+
+.input-modern:focus {
+  @apply outline-none;
+  border-color: var(--accent-purple);
+  box-shadow: var(--shadow-glow);
+}
+
+/* Status Badges */
+.badge {
+  @apply inline-flex items-center rounded-full px-3 py-1 text-sm font-medium;
+  background: var(--primary-gradient);
+  color: white;
+  transition: transform 0.3s ease;
+}
+
+.badge:hover {
+  transform: scale(1.05);
+}
+
+/* Navigation */
+.nav-item {
+  @apply relative px-4 py-2 transition-all duration-300;
+}
+
+.nav-item::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--accent-purple);
+  transition: width 0.3s ease;
+}
+
+.nav-item:hover::after {
+  width: 100%;
+}
+
+/* Tables */
+.table-modern {
+  @apply w-full border-collapse overflow-hidden rounded-lg;
+}
+
+.table-modern th {
+  @apply bg-gradient-to-r from-purple-500 to-pink-500 text-white p-4;
+}
+
+.table-modern td {
+  @apply p-4 transition-colors duration-300;
+}
+
+.table-modern tr:hover td {
+  background: var(--bg-light);
+}
