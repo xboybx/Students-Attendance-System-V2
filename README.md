@@ -1,5 +1,7 @@
 # Students Attendance System
 
+# Author: [Jaswanth]
+
 ## Table of Contents
 - [Project Purpose](#project-purpose)
 - [Features](#features)
