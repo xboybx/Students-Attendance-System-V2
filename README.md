@@ -1,6 +1,6 @@
 # Students Attendance System
 
-# Author: [Jaswanth]
+**Author:Jaswanth**
 
 ## Table of Contents
 - [Project Purpose](#project-purpose)
