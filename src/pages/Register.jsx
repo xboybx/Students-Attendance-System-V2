@@ -49,7 +49,7 @@ export function Register() {
       // Save user to localStorage
       localStorage.setItem('users', JSON.stringify([...existingUsers, newUser]));
       localStorage.setItem('user', JSON.stringify(newUser));
-      
+
       navigate(formData.role === 'teacher' ? '/dashboard' : '/student-dashboard');
     } catch (err) {
       setError('Registration failed');
@@ -64,8 +64,8 @@ export function Register() {
             Create your account
           </h2>
           <p className="mt-2 text-center text-sm text-gray-600">
-            {formData.role === 'teacher' ? 
-              'Teachers must use their faculty email (@faculty.edu)' : 
+            {formData.role === 'teacher' ?
+              'Teachers must use their faculty email (@faculty.edu)' :
               'Students can register with any valid email'
             }
           </p>
