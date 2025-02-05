@@ -78,5 +78,3 @@ After submitting attendance, teachers can generate a report summarizing the atte
 ## Contributing
 Contributions are welcome! Please feel free to submit a pull request or open an issue for any enhancements or bug fixes.
 
-## License
-This project is licensed under the MIT License.
