@@ -17,7 +17,7 @@
   - [Attendance Reports](#attendance-reports)
 - [Technologies Used](#technologies-used)
 - [Contributing](#contributing)
-- [License](#license)
+
 
 ## Project Purpose
 The Students Attendance System is a web application designed to facilitate the management of student attendance in educational institutions. The application allows teachers to mark attendance for their classes and generate reports, while students can register and enroll in their respective batches.
