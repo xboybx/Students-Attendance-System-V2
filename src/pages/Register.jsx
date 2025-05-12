@@ -1,40 +1,45 @@
-import React, { useState } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
-import { UserPlus, AlertCircle } from 'lucide-react';
+import React, { useState } from "react";
+import { useNavigate, Link } from "react-router-dom";
+import { UserPlus, AlertCircle } from "lucide-react";
 
 export function Register() {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
-    email: '',
-    password: '',
-    confirmPassword: '',
-    role: 'student',
-    name: ''
+    email: "",
+    password: "",
+    confirmPassword: "",
+    role: "student",
+    name: "",
   });
-  const [error, setError] = useState('');
+  const [error, setError] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError('');
+    setError("");
 
     if (formData.password !== formData.confirmPassword) {
-      setError('Passwords do not match');
+      setError("Passwords do not match");
       return;
     }
 
     try {
       // Check if email already exists
-      const existingUsers = JSON.parse(localStorage.getItem('users') || '[]');
-      const existingUser = existingUsers.find(user => user.email === formData.email);
+      const existingUsers = JSON.parse(localStorage.getItem("users") || "[]");
+      const existingUser = existingUsers.find(
+        (user) => user.email === formData.email
+      );
 
       if (existingUser) {
-        setError('Email already registered');
+        setError("Email already registered");
         return;
       }
 
       // For teachers, check if they have the required email domain
-      if (formData.role === 'teacher' && !formData.email.endsWith('@faculty.edu')) {
-        setError('Teachers must use a faculty email address (@faculty.edu)');
+      if (
+        formData.role === "teacher" &&
+        !formData.email.endsWith("@faculty.edu")
+      ) {
+        setError("Teachers must use a faculty email address (@faculty.edu)");
         return;
       }
 
@@ -43,31 +48,35 @@ export function Register() {
         email: formData.email,
         role: formData.role,
         name: formData.name,
-        password: formData.password // In a real app, this should be hashed
+        password: formData.password, // In a real app, this should be hashed
       };
 
       // Save user to localStorage
-      localStorage.setItem('users', JSON.stringify([...existingUsers, newUser]));
-      localStorage.setItem('user', JSON.stringify(newUser));
+      localStorage.setItem(
+        "users",
+        JSON.stringify([...existingUsers, newUser])
+      );
+      localStorage.setItem("user", JSON.stringify(newUser));
 
-      navigate(formData.role === 'teacher' ? '/dashboard' : '/student-dashboard');
+      navigate(
+        formData.role === "teacher" ? "/dashboard" : "/student-dashboard"
+      );
     } catch (err) {
-      setError('Registration failed');
+      setError("Registration failed");
     }
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-md w-full space-y-8">
+    <div className="min-h-screen flex  flex-col items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-md w-full space-y-8 ">
         <div>
           <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
             Create your account
           </h2>
           <p className="mt-2 text-center text-sm text-gray-600">
-            {formData.role === 'teacher' ?
-              'Teachers must use their faculty email (@faculty.edu)' :
-              'Students can register with any valid email'
-            }
+            {formData.role === "teacher"
+              ? "Teachers must use their faculty email (@faculty.edu)"
+              : "Students can register with any valid email"}
           </p>
         </div>
 
@@ -92,7 +101,9 @@ export function Register() {
                 className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                 placeholder="Full Name"
                 value={formData.name}
-                onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                onChange={(e) =>
+                  setFormData({ ...formData, name: e.target.value })
+                }
               />
             </div>
             <div>
@@ -108,7 +119,9 @@ export function Register() {
                 className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                 placeholder="Email address"
                 value={formData.email}
-                onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                onChange={(e) =>
+                  setFormData({ ...formData, email: e.target.value })
+                }
               />
             </div>
             <div>
@@ -124,7 +137,9 @@ export function Register() {
                 className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                 placeholder="Password"
                 value={formData.password}
-                onChange={(e) => setFormData({ ...formData, password: e.target.value })}
+                onChange={(e) =>
+                  setFormData({ ...formData, password: e.target.value })
+                }
               />
             </div>
             <div>
@@ -140,7 +155,9 @@ export function Register() {
                 className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                 placeholder="Confirm Password"
                 value={formData.confirmPassword}
-                onChange={(e) => setFormData({ ...formData, confirmPassword: e.target.value })}
+                onChange={(e) =>
+                  setFormData({ ...formData, confirmPassword: e.target.value })
+                }
               />
             </div>
           </div>
@@ -152,7 +169,9 @@ export function Register() {
             <select
               className="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md"
               value={formData.role}
-              onChange={(e) => setFormData({ ...formData, role: e.target.value })}
+              onChange={(e) =>
+                setFormData({ ...formData, role: e.target.value })
+              }
             >
               <option value="student">Student</option>
               <option value="teacher">Teacher</option>
@@ -180,6 +199,25 @@ export function Register() {
             Already have an account? Sign in
           </Link>
         </div>
+      </div>
+      <div className="mt-6 bg-gray-50 p-4 rounded-md text-sm text-gray-700">
+        <h3 className="font-semibold mb-2">How to Use / Test the App:</h3>
+        <ul className="list-disc list-inside space-y-1">
+          <li>Register students by providing their details on this page.</li>
+          <li>
+            Register teachers using a faculty email address (e.g.,
+            teachername@faculty.edu).
+          </li>
+          <li>
+            After registration, login with the registered credentials selecting
+            the correct role. To test functionality, login as a teacher.
+          </li>
+          <li>
+            Teachers can mark attendance and generate reports from their
+            dashboard.
+          </li>
+          <li>Students can view their enrollment status on their dashboard.</li>
+        </ul>
       </div>
     </div>
   );
